@@ -22,10 +22,20 @@ public class Gugudan {
 	
 	public void reactiveV2() {
 		int dan = inputDan();
+		int a = 2;
 		
 		Function<Integer, Observable<String>> gugudan = num ->
 			Observable.range(1,9).map(row -> num + "*" + row + "=" + dan*row);
 		Observable<String> source = Observable.just(dan).flatMap(gugudan);
+		source.subscribe(System.out::println);
+	}
+	
+	public void reactiveV3() {
+		int dan = inputDan();
+		
+		Observable<String> source = Observable.just(dan)
+				.flatMap(num->Observable.range(1, 9))
+				.map(row -> dan + "*" + row +"="+dan*row);
 		source.subscribe(System.out::println);
 	}
 	
@@ -38,11 +48,12 @@ public class Gugudan {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Gugudan gugudan = new Gugudan();
+		
 //		gugudan.plainJava();
-		gugudan.reactiveV1();
+//		gugudan.reactiveV1();
 		gugudan.reactiveV2();
+		gugudan.reactiveV3();
 	}
 
 }
