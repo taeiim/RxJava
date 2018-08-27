@@ -22,7 +22,6 @@ public class Gugudan {
 	
 	public void reactiveV2() {
 		int dan = inputDan();
-		int a = 2;
 		
 		Function<Integer, Observable<String>> gugudan = num ->
 			Observable.range(1,9).map(row -> num + "*" + row + "=" + dan*row);
@@ -52,7 +51,7 @@ public class Gugudan {
 		
 //		gugudan.plainJava();
 //		gugudan.reactiveV1();
-		gugudan.reactiveV2();
+//		gugudan.reactiveV2();
 		gugudan.reactiveV3();
 	}
 
