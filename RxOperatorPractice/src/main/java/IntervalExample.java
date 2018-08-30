@@ -1,16 +1,25 @@
-
 import java.util.concurrent.TimeUnit;
-import java.util.*;
+
+import commons.CommonUtils;
+import commons.Log;
+
 import io.reactivex.Observable;
 
 public class IntervalExample {
 
 	public void printNumbers() {
-		Observable<Long> source = Observable.interval(1, TimeUnit.MINUTES)
-				.map(num -> num+1)
+		CommonUtils.exampleStart();
+
+		Observable<Long> source = Observable.interval(0, 1L, TimeUnit.MILLISECONDS)
+				.map(num -> (num+1))
 				.take(5);
-		source.subscribe(System.out::println);
+		source.subscribe(Log::it);
 		
+		Log.it("ddd");
+		Log.it("ddd");
+		
+		CommonUtils.sleep(1000);
+
 	}
 	
 	public static void main(String[] args) {
